@@ -1,0 +1,78 @@
+name: ToolHold CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: toolhold-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: macOS build, tests and resource checks
+    runs-on: xcode-27
+    timeout-minutes: 60
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_27.2.app/Contents/Developer
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Show build environment
+        run: |
+          set -euo pipefail
+          xcodebuild -version
+          swift --version
+          df -h .
+
+      - name: Validate source resources and notices
+        run: |
+          set -euo pipefail
+          python3 scripts/code-markup/check.py
+          python3 scripts/check-network-references.py
+          python3 scripts/GenerateHTMLEntityTable.py --check
+          python3 scripts/check-third-party-notices.py
+
+      - name: Run SwiftPM tests
+        run: |
+          set -euo pipefail
+          swift test \
+            --jobs 2 \
+            --scratch-path "$RUNNER_TEMP/toolhold-tests" \
+            --cache-path "$RUNNER_TEMP/toolhold-swift-cache"
+
+      - name: Free SwiftPM build outputs
+        if: always()
+        run: |
+          rm -rf "$RUNNER_TEMP/toolhold-tests" "$RUNNER_TEMP/toolhold-swift-cache"
+
+      - name: Build unsigned macOS Release
+        run: |
+          set -euo pipefail
+          xcodebuild \
+            -project "Developer Toolbox.xcodeproj" \
+            -scheme "ToolHold Navigation" \
+            -configuration Release \
+            -destination 'platform=macOS' \
+            -derivedDataPath "$RUNNER_TEMP/toolhold-macos" \
+            -jobs 2 \
+            CODE_SIGNING_ALLOWED=NO \
+            DEVELOPMENT_TEAM= \
+            build
+
+      - name: Verify built app resources and notices
+        run: |
+          set -euo pipefail
+          app="$RUNNER_TEMP/toolhold-macos/Build/Products/Release/ToolHold.app"
+          python3 scripts/verify-release-packaging.py "$app"
+          python3 scripts/check-third-party-notices.py "$app"
