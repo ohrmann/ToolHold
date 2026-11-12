@@ -179,6 +179,7 @@ struct ContentView: View {
             JWTVerifierView(workspace: verifierWorkspace)
           } else if selected.rawValue >= "T-043" && selected.rawValue <= "T-052" {
             dateNetworkTool(selected)
+              .navigationTitle(ToolCatalog.tool(selected).displayName)
           } else if selected.rawValue >= "T-033" && selected.rawValue <= "T-042" {
             textTool(selected)
           } else if selected == .t078 {
@@ -189,26 +190,35 @@ struct ContentView: View {
             GZipView(workspace: gzipWorkspace)
           } else if selected == .t061 {
             ColorConverterView(workspace: colorWorkspace)
+              .navigationTitle(ToolCatalog.tool(selected).displayName)
           } else if selected == .t062 {
             ContrastView(workspace: contrastWorkspace)
+              .navigationTitle(ToolCatalog.tool(selected).displayName)
           } else if selected == .t063 {
             ImageWorkspaceView(workspace: imageConverter, tool: 63)
+              .navigationTitle(ToolCatalog.tool(selected).displayName)
           } else if selected == .t064 {
             ImageWorkspaceView(workspace: imageResizer, tool: 64)
+              .navigationTitle(ToolCatalog.tool(selected).displayName)
           } else if selected == .t065 {
             ImageWorkspaceView(workspace: imageMetadata, tool: 65)
+              .navigationTitle(ToolCatalog.tool(selected).displayName)
           } else if selected == .t066 {
             SVGWorkspaceView(workspace: svgWorkspace)
+              .navigationTitle(ToolCatalog.tool(selected).displayName)
           } else if selected == .t067 {
             CurlWorkspaceView(workspace: curlWorkspace)
+              .navigationTitle(ToolCatalog.tool(selected).displayName)
           } else if selected == .t068 {
             ConnectionWorkspaceView(workspace: connectionWorkspace)
+              .navigationTitle(ToolCatalog.tool(selected).displayName)
           } else if selected == .t076 {
             PKIExpirationView(workspace: expirationWorkspace)
           } else if let workspace = pkiWorkspaces[selected.rawValue] {
             PKIWorkspaceView(workspace: workspace)
           } else if let workspace = markupWorkspaces[selected.rawValue] {
             CodeMarkupWorkspaceView(workspace: workspace)
+              .navigationTitle(ToolCatalog.tool(selected).displayName)
           } else {
             ToolPlaceholderView(tool: ToolCatalog.tool(selected))
           }
