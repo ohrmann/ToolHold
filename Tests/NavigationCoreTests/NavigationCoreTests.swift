@@ -26,7 +26,7 @@ struct NavigationCoreTests {
     let text = try String(
       contentsOf: root.appendingPathComponent("docs/TOOL_CATALOG.md"), encoding: .utf8)
     var categoryIndex = -1
-    var documented: [(String, String, ToolCategory, String, String)] = []
+    var documented: [(String, String, ToolCategory, String)] = []
     for line in text.components(separatedBy: .newlines) {
       if line.hasPrefix("### "), line.range(of: #"\(\d+\)$"#, options: .regularExpression) != nil {
         categoryIndex += 1
@@ -39,7 +39,7 @@ struct NavigationCoreTests {
           $0.trimmingCharacters(in: .whitespaces)
         }
         documented.append(
-          (fields[1], fields[2], ToolCategory.allCases[categoryIndex], fields[3], fields[6]))
+          (fields[1], fields[2], ToolCategory.allCases[categoryIndex], fields[5]))
       }
     }
     #expect(documented.count == 78)
@@ -52,8 +52,7 @@ struct NavigationCoreTests {
       #expect(tool.id.rawValue == entry.0)
       #expect(tool.title == entry.1)
       #expect(tool.category == entry.2)
-      #expect(tool.release.rawValue == entry.3)
-      #expect(tool.shortDescription == entry.4)
+      #expect(tool.shortDescription == entry.3)
       #expect(!tool.symbol.isEmpty)
     }
     #expect(ToolCatalog.tools.filter(\.isImplemented).map(\.id) == [.t001, .t002, .t003, .t004, .t005, .t006, .t007, .t008, .t009, .t010, .t011, .t012, .t013, .t014, .t015, .t016, .t017, .t018, .t019, .t020, .t078, .t021, .t022, .t023, .t024, .t025, .t026, .t027, .t028, .t029, .t030, .t031, .t032, .t033, .t034, .t035, .t036, .t037, .t038, .t039, .t040, .t041, .t042, .t043, .t044, .t045, .t046, .t047, .t048, .t049, .t050, .t051, .t052, .t053, .t054, .t055, .t056, .t077, .t057, .t058, .t059, .t060, .t061, .t062, .t063, .t064, .t065, .t066, .t067, .t068, .t069, .t070, .t071, .t072, .t073, .t074, .t075, .t076])

@@ -27,7 +27,7 @@ Real macOS app windows with synthetic examples. Click an image for full resoluti
 - Color and contrast calculations, local image processing, cURL-to-code and connection-string inspection.
 - Certificate, CSR, key and PKCS#12 tools, including local generation, inspection and conversion.
 
-The [tool catalog](docs/TOOL_CATALOG.md) lists the 78 implemented routes and important constraints. Its existing release flags are metadata, not a public roadmap; implementation does not mean every platform/security check is complete.
+The [tool catalog](docs/TOOL_CATALOG.md) documents all 78 available tools and their processing constraints. Checks before binary distribution are tracked separately in the [verification summary](PUBLIC_RELEASE_AUDIT.md#binary-distribution-gates).
 
 ## Requirements
 

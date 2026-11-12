@@ -16,7 +16,7 @@ Choose suites for the changed core from [Package.swift](../Package.swift). A sub
 
 Two suites consume documentation paths directly:
 
-- `NavigationCoreTests.canonicalCatalogMatchesDocumentation` parses [TOOL_CATALOG.md](TOOL_CATALOG.md). Keep category titles, order, IDs, tool titles, catalog flags and navigation descriptions aligned with `MyApp/NavigationCore/ToolCatalog.swift`.
+- `NavigationCoreTests.canonicalCatalogMatchesDocumentation` parses [TOOL_CATALOG.md](TOOL_CATALOG.md). Keep category titles, order, IDs, tool titles and navigation descriptions aligned with `MyApp/NavigationCore/ToolCatalog.swift`.
 - `JSONProcessorTests.checkedInFixtures` loads JSON files from [M0_TEST_FIXTURES](M0_TEST_FIXTURES/README.md). Preserve those paths or update the consumer in the same change. These are deliberately synthetic and sometimes malformed inputs.
 
 [Generated-model compiler tests](../Tests/GeneratedModels/README.md) are an optional separate harness with explicit Swift, TypeScript, .NET, Java/Jackson and Kotlin toolchains. They are not automatically run by `swift test`; unavailable compilers are not successful checks. Retained fixture READMEs document synthetic certificate/JWT/QR origins and reproduction requirements. Never replace them with real credentials or customer input.

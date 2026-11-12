@@ -17,4 +17,4 @@ For legal terms, see [LICENSE](../LICENSE), [NOTICE](../NOTICE), [third-party no
 
 [M0 test fixtures](M0_TEST_FIXTURES/README.md) are synthetic inputs used by tests. Historical automated UI-test captures are excluded from this snapshot.
 
-This directory documents the current implementation. Catalog flags are existing metadata, not a public roadmap or a promise of future releases. Historical planning and work logs are not maintained as public release notes.
+This directory documents the current implementation. Historical planning and work logs are not maintained as public release notes.
