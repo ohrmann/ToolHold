@@ -1,12 +1,10 @@
-# Developer Toolbox (ToolHold)
+# ToolHold
 
-A native Swift/SwiftUI application for recurring development tasks on macOS, with an iPhone and iPad target in the same project. The application is currently branded **ToolHold**; the repository, Xcode project and Swift packages retain their original Developer Toolbox names.
+**A native, local-first developer toolbox for macOS, built with Swift and SwiftUI.**
 
-It was created to keep small engineering tasks in one local workspace: inspect a payload, convert a format, compare text, generate test values or examine cryptographic material without repeatedly assembling separate tools.
+ToolHold brings recurring engineering tasks into one workspace: inspect and transform structured data, compare text, generate test values, work with certificates and keys, and more. Most processing happens entirely on-device; external preview resources can be loaded only with explicit permission.
 
-The project was initiated and directed by Vitalii Kolosov, with substantial code developed using OpenAI Codex under his supervision.
-
-This source snapshot is prepared for public review. See [verification and known limitations](PUBLIC_RELEASE_AUDIT.md) for the checks performed and separate binary-distribution gates.
+The Xcode project also includes an iPhone and iPad target. The project was initiated and directed by Vitalii Kolosov, with substantial implementation developed using OpenAI Codex under his supervision.
 
 ## Features
 
@@ -21,10 +19,6 @@ This source snapshot is prepared for public review. See [verification and known 
 
 The [tool catalog](docs/TOOL_CATALOG.md) lists the 78 implemented routes and important constraints. Its existing release flags are metadata, not a public roadmap; implementation does not mean every platform/security check is complete.
 
-## Screenshots
-
-Current macOS screenshots have not yet been prepared. Historical automated UI-test captures are excluded from this source snapshot.
-
 ## Requirements
 
 - **macOS 27.0 or later** for the application, as configured in the Xcode project.
@@ -35,11 +29,11 @@ Current macOS screenshots have not yet been prepared. Historical automated UI-te
 
 ## Building from Source
 
-Copy this repository's clone URL from GitHub, then replace `REPOSITORY_URL` below:
+Clone the repository and open its Xcode project (which retains the original Developer Toolbox filename):
 
 ```sh
-git clone REPOSITORY_URL developer-toolbox
-cd developer-toolbox
+git clone https://github.com/ohrmann/ToolHold.git
+cd ToolHold
 open "Developer Toolbox.xcodeproj"
 ```
 
@@ -61,7 +55,7 @@ The output is `.build/local-macos/Build/Products/Debug/ToolHold.app`. The [macOS
 
 Unsigned builds verify compilation and resource packaging. macOS may require a local signature to launch, and an unsigned run does not validate App Sandbox enforcement. For signed development runs, select your own team locally in Xcode, or supply signing settings on the command line. The checked-in team identifier is a public signing identifier, not a credential; its membership is not required for the unsigned command above. Release signing, notarization and Apple distribution account setup remain the owner's responsibility. Do not commit signing keys or provisioning profiles.
 
-Optional, deliberate regeneration procedures are documented in [Vendor READMEs](THIRD_PARTY_NOTICES.md), [Code & Markup](scripts/code-markup/README.md) and [generated-model checks](Tests/GeneratedModels/README.md). They are separate from the normal build and can require additional tools or explicit downloads.
+Optional, deliberate regeneration procedures are documented in [third-party notices](THIRD_PARTY_NOTICES.md), vendored component READMEs under `Vendor/`, [Code & Markup](scripts/code-markup/README.md) and [generated-model checks](Tests/GeneratedModels/README.md). They are separate from the normal build and can require additional tools or explicit downloads.
 
 ## Running Tests
 
