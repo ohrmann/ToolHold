@@ -1,0 +1,101 @@
+{
+  "encoder": "Segno 1.6.6 (BSD-3-Clause), development fixture generator only",
+  "cases": [
+    {
+      "name": "numeric",
+      "sha256": "6086e9610c5e4951f06045ba7a6cbc24f0f8e54a41d9e89a2d6622fd2350c4fb",
+      "bytesHex": "30303132333435363738393031323334353637383930",
+      "text": "0012345678901234567890",
+      "eci": false
+    },
+    {
+      "name": "alphanumeric",
+      "sha256": "b061b1044d5735ac5eb695a681fcdaa7743b8e6de10b9b971fd1235613040a0d",
+      "bytesHex": "414243203132332024252a2b2d2e2f3a",
+      "text": "ABC 123 $%*+-./:",
+      "eci": false
+    },
+    {
+      "name": "utf8-eci",
+      "sha256": "95cd43e7c740098f8ffa48138879779f128842557ad0cf3b5c217f95f8801956",
+      "bytesHex": "f09f91a9f09f8fbde2808df09f92bb2065cc8120e4b8ade69687",
+      "text": "👩🏽‍💻 é 中文",
+      "eci": true
+    },
+    {
+      "name": "latin1-eci",
+      "sha256": "9e33784e42a02f0d72f22c807742d1eda9f8947cb862e09bee00b7dd527ff2e6",
+      "bytesHex": "636166e92053747261df65",
+      "text": "café Straße",
+      "eci": false
+    },
+    {
+      "name": "cyrillic-eci",
+      "sha256": "4db3dddb4504453835992f149de9871e7e122e5906a7a999855858eb465ee64c",
+      "bytesHex": "cff0e8e2e5f220ece8f0",
+      "text": "Привет мир",
+      "eci": true
+    },
+    {
+      "name": "kanji",
+      "sha256": "eef52354ad538be559e6827a1554fdeacbd2a2be7c46aae25c299f237ab74fdd",
+      "bytesHex": "8abf8e9a93fa967b",
+      "text": "漢字日本",
+      "eci": false
+    },
+    {
+      "name": "binary",
+      "sha256": "158cb4071283830e7ad4b7ee88db55589c6726c4afd4aabd46275b4bb4a05757",
+      "bytesHex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff",
+      "text": null,
+      "eci": false
+    },
+    {
+      "name": "nul",
+      "sha256": "951ad46dd522d537981afb00685510ee75988aeff2fdc87eca44ea7bc147e3a5",
+      "bytesHex": "00737461727400656e6400",
+      "text": null,
+      "eci": false
+    },
+    {
+      "name": "empty",
+      "sha256": "f2cdc1908f1746724ab1625688477de6322500de175fcbb5b85755f462049001",
+      "bytesHex": "",
+      "text": null,
+      "eci": false
+    },
+    {
+      "name": "sequence-0",
+      "sha256": "cf1c44aecbd5521e4035295f6267337d4178e5f67ef2405e8733ec817dae2a3a"
+    },
+    {
+      "name": "sequence-1",
+      "sha256": "0345ad7b60e336f932fda4b10dc842c59f2b36c181befb4178fc541a678fe63a"
+    },
+    {
+      "name": "mixed-eci",
+      "sha256": "d880d5390cd10e5c6f439b69e19969a73426e45c70a0342fad5e8cba3e924e57",
+      "bytesHex": "7072656669783030313233c6",
+      "text": "prefix00123Ж",
+      "eci": true
+    },
+    {
+      "name": "unknown-eci",
+      "sha256": "d55567a0c1f8f03f5287a96bbf6c18452b53ed624904f312b2b438e5484d4c52",
+      "bytesHex": "756e6b6e6f776e2d6d61726b6572",
+      "text": null,
+      "eci": true
+    },
+    {
+      "name": "gs1",
+      "sha256": "95ffc3e5cbc3de91283f0c4de5e198541987be50a052b60bf03c8aee26a7ac28",
+      "bytesHex": "303130313233343536373839303132381d3130414243",
+      "text": "0101234567890128\u001d10ABC",
+      "eci": false
+    }
+  ],
+  "imageBudgetFixtures": {
+    "pixels-too-large.png": "f0ee5cf04046e7d7d93fc12b5f9081670a3d171bedd08e5e708653887365e6b3",
+    "side-too-large.png": "5936eeb4fa1c98c25ac4e52b63bd764dd2540b08d48617aad45003dd406ed88f"
+  }
+}

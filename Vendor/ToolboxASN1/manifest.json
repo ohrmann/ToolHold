@@ -1,0 +1,32 @@
+{
+  "upstream": "https://github.com/apple/swift-asn1",
+  "tag": "1.7.3",
+  "commit": "3b6410f7dee09eb33cdd26260c5fd47fda19b0e2",
+  "archiveSHA256": "77add3684fd75a586529893288af51ed092c565ec0c154d2b4eedb3a6bdc294c",
+  "license": "Apache-2.0",
+  "sourceChanges": false,
+  "files": {
+    "Sources/SwiftASN1/ASN1.swift": "356f137bb9f8b0b1743912f2c1bc4935b39943607ae6ed1be348bf9583e06ac8",
+    "Sources/SwiftASN1/BER.swift": "7facbbe642496f9ecac712ec944f64e518ee2d08ce213034e54a937e7c9db53f",
+    "Sources/SwiftASN1/Basic ASN1 Types/ASN1Any.swift": "0e9e973cb3c41539c46c9da270fe894e6d8c765b62e29f3d778c72676b835d62",
+    "Sources/SwiftASN1/Basic ASN1 Types/ASN1BitString.swift": "c33d2d76a9dde912afb9e5b83c2c3ace37f4a3672ae28ab7ac76711b2f3f0613",
+    "Sources/SwiftASN1/Basic ASN1 Types/ASN1Boolean.swift": "95bc5c6fb69b8e0f878cbb159950b9b127e11f694c94c06b7301b0e0732ccf90",
+    "Sources/SwiftASN1/Basic ASN1 Types/ASN1Identifier.swift": "c87e8e3287bcda2751c2cd738ec00dc8e120582fd0b6536a1947c918149b79de",
+    "Sources/SwiftASN1/Basic ASN1 Types/ASN1Integer.swift": "554ca38ea50e53d63f796331a2278b376ead7c1b88de07d70fe830fd42970e9b",
+    "Sources/SwiftASN1/Basic ASN1 Types/ASN1Null.swift": "e899a8a943f56f7cd5337f5d0947677133f5cadb515c620549eae21b398808c6",
+    "Sources/SwiftASN1/Basic ASN1 Types/ASN1OctetString.swift": "d01c8524dc8831a730b0b4f3d12206fc94e143b9a2ecf21e37bfb054e01111d3",
+    "Sources/SwiftASN1/Basic ASN1 Types/ASN1Strings.swift": "74a6710bc9f55451e890083837f9086d5fa4de1d9ac14702e3a7294db566103a",
+    "Sources/SwiftASN1/Basic ASN1 Types/ArraySliceBigint.swift": "bf1dd3efc78ba05f69e380ef2b41f31fb1c23f2a3a92fed10c4819606246f6d1",
+    "Sources/SwiftASN1/Basic ASN1 Types/GeneralizedTime.swift": "8deab91a98613f56f1c684d14de020fc8d4caf5dfb2b45ecdd5be644eefe00f2",
+    "Sources/SwiftASN1/Basic ASN1 Types/ObjectIdentifier.swift": "b6827b9d653f2116371bd3da8aa37f6a23d3f2f2d1bb6b720b3abc3f7f9332da",
+    "Sources/SwiftASN1/Basic ASN1 Types/PEMDocument.swift": "4be6d9187c69a2f98d2e16b1002f2c8099521dc6ff565050da1b7969bf158fd9",
+    "Sources/SwiftASN1/Basic ASN1 Types/TimeUtilities.swift": "d8a3cdb701ae2dac2b03b4018e54481e8ae00d44e112afbe61070b80d29c3f59",
+    "Sources/SwiftASN1/Basic ASN1 Types/UTCTime.swift": "da2a7de209da0f7883cdd06e4df6790dac4eb90d9e9ffd4689eb056f4af0ec9a",
+    "Sources/SwiftASN1/CMakeLists.txt": "c90351ad51061a85c19fdb063af497ea8ef58c2670fc3ba2f9f2f64a7e4d6c49",
+    "Sources/SwiftASN1/DER.swift": "ce4429bab6b3a5633b8b1221c2c1bf74cf84c1a7f1e76b244e16ac87fe44100e",
+    "Sources/SwiftASN1/Docs.docc/DecodingASN1.md": "aa48ba2409b49ff8bea462dfbcc15ed740bd4b21e2aa63041a4fa6362108eae2",
+    "Sources/SwiftASN1/Docs.docc/PEM.md": "207c792d62afeb17c5afb12b1c7fc1f8644796fe5cc814ee0200295560f03f75",
+    "Sources/SwiftASN1/Docs.docc/index.md": "5988557aff1faf9d0875253a0ffb9ccadb6d40f1e10dbcd9c557526e8005d50d",
+    "Sources/SwiftASN1/Errors.swift": "62f5d432c117b450bcd2ebacbb8c7803c43fccf6be81989140b8e380a8009a68"
+  }
+}

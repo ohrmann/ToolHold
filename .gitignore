@@ -1,0 +1,62 @@
+# Local IDE settings (keep shared schemes and .run configurations)
+.idea/
+xcuserdata/
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
+.swiftpm/
+
+# Build and generated output
+.build/
+build/
+DerivedData/
+*.xcarchive
+*.dSYM/
+*.ipa
+*.log
+.DS_Store
+__pycache__/
+*.py[cod]
+*.swp
+*.swo
+*~
+
+# Development-only dependency installs
+node_modules/
+/tmp/*
+
+# Local audit notes and private configuration; never add credentials to examples
+/.audit-local/
+.env
+.env.*
+!.env.example
+*.local.xcconfig
+*.pem
+*.key
+*.p8
+*.keychain
+*.keychain-db
+*.p12
+*.pfx
+*.mobileprovision
+*.provisionprofile
+# Public synthetic containers are intentional test material
+!Tests/**/Fixtures/**/*.pem
+!Tests/**/Fixtures/**/*.key
+!Tests/PKICoreTests/Fixtures/*.p12
+!Tests/PKICoreTests/Fixtures/*.pfx
+
+# Local editor/project launch configuration
+.run/
+.vscode/
+
+# Test diagnostics and recordings (synthetic fixture images remain tracked)
+*.xcresult
+*.xcresult/
+*.xctestrun
+*.profraw
+*.profdata
+*.trace/
+/test-results/
+/TestResults/
+/docs/verification-assets/

@@ -1,0 +1,28 @@
+{
+  "version": "4.0.3",
+  "sha256": "325b5c806167c13b40b1ffeadfe0248197c00eccc4cf123ec1e28d2d2fd216d9",
+  "source": "https://github.com/openssl/openssl/releases/download/openssl-4.0.3/openssl-4.0.3.tar.gz",
+  "flags": [
+    "no-shared",
+    "no-module",
+    "no-apps",
+    "no-tests",
+    "no-autoload-config",
+    "no-dso",
+    "no-pinshared",
+    "no-http",
+    "no-sock",
+    "no-ssl",
+    "no-tls",
+    "no-dtls",
+    "no-quic",
+    "no-docs"
+  ],
+  "slices": [
+    "mac-arm64",
+    "mac-x86_64",
+    "ios-arm64",
+    "sim-arm64",
+    "sim-x86_64"
+  ]
+}

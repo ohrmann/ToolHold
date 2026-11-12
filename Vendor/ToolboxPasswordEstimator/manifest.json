@@ -1,0 +1,11 @@
+{
+  "bundleSHA256": "5439763b5f5eb09d1352d136fcb44976e6c9e25f10b424800c38d53526d47b0a",
+  "bundleBytes": 1663821,
+  "runtimePackages": {
+    "@zxcvbn-ts/core": "4.2.0",
+    "@zxcvbn-ts/language-common": "4.1.3",
+    "@zxcvbn-ts/language-en": "4.1.1"
+  },
+  "audit": "npm audit --omit=dev: 0 vulnerabilities, 2026-10-22",
+  "notes": "SECURITY.md upstream version table lags 4.x; no claim of external security audit. Dictionaries retain separate attribution terms."
+}

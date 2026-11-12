@@ -1,0 +1,11 @@
+{
+  "id": "eff-long-2016-v1",
+  "entries": 7776,
+  "sha256": "addd35536511597a02fa0a9ff1e5284677b8883b83e986e43f15a3db996b903e",
+  "source": "https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt",
+  "retrieved": "2026-10-20",
+  "license": "CC-BY-4.0",
+  "licenseEvidence": "https://www.eff.org/copyright",
+  "parserVersion": 1,
+  "transformation": "Artifact unchanged; runtime discards dice indices. Hyphen separator doubles internal hyphens to preserve unambiguous words."
+}

@@ -1,0 +1,366 @@
+[
+  {
+    "destination": "False",
+    "forwardable": "False",
+    "globalReachable": "False",
+    "id": "100:0:0:1::/64",
+    "name": "Dummy IPv6 Prefix",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9780.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "False",
+    "id": "100::/64",
+    "name": "Discard-Only Address Block",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc6666.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "",
+    "forwardable": "",
+    "globalReachable": "",
+    "id": "2001:10::/28",
+    "name": "Deprecated (previously ORCHID)",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc4843.html"
+    ],
+    "reserved": "",
+    "source": "",
+    "termination": "2014-03"
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "True",
+    "id": "2001:1::1/128",
+    "name": "Port Control Protocol Anycast",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc7723.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "True",
+    "id": "2001:1::2/128",
+    "name": "Traversal Using Relays around NAT Anycast",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc8155.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "True",
+    "id": "2001:1::3/128",
+    "name": "DNS-SD Service Registration Protocol Anycast",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9665.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "True",
+    "id": "2001:20::/28",
+    "name": "ORCHIDv2",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc7343.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "False",
+    "id": "2001:2::/48",
+    "name": "Benchmarking",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc5180.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "True",
+    "id": "2001:30::/28",
+    "name": "Drone Remote ID Protocol Entity Tags (DETs) Prefix",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9374.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "True",
+    "id": "2001:3::/32",
+    "name": "AMT",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc7450.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "True",
+    "id": "2001:4:112::/48",
+    "name": "AS112-v6",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc7535.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "False",
+    "forwardable": "False",
+    "globalReachable": "False",
+    "id": "2001::/23",
+    "name": "IETF Protocol Assignments",
+    "notes": [
+      "Unless allowed by a more specific allocation.",
+      "Unless allowed by a more specific allocation.",
+      "Unless allowed by a more specific allocation.",
+      "Unless allowed by a more specific allocation."
+    ],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc2928.html"
+    ],
+    "reserved": "False",
+    "source": "False",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "N/A",
+    "id": "2001::/32",
+    "name": "TEREDO",
+    "notes": [
+      "See for details."
+    ],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc4380.html",
+      "https://www.rfc-editor.org/rfc/rfc8190.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "False",
+    "forwardable": "False",
+    "globalReachable": "False",
+    "id": "2001:db8::/32",
+    "name": "Documentation",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc3849.html"
+    ],
+    "reserved": "False",
+    "source": "False",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "N/A",
+    "id": "2002::/16",
+    "name": "6to4",
+    "notes": [
+      "See for details.",
+      "See for details."
+    ],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc3056.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "True",
+    "id": "2620:4f:8000::/48",
+    "name": "Direct Delegation AS112 Service",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc7534.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "False",
+    "forwardable": "False",
+    "globalReachable": "False",
+    "id": "3fff::/20",
+    "name": "Documentation",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9637.html"
+    ],
+    "reserved": "False",
+    "source": "False",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "False",
+    "id": "5f00::/16",
+    "name": "Segment Routing (SRv6) SIDs",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9602.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "False",
+    "id": "64:ff9b:1::/48",
+    "name": "IPv4-IPv6 Translat.",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc8215.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "True",
+    "id": "64:ff9b::/96",
+    "name": "IPv4-IPv6 Translat.",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc6052.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "False",
+    "forwardable": "False",
+    "globalReachable": "False",
+    "id": "::/128",
+    "name": "Unspecified Address",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc4291.html"
+    ],
+    "reserved": "True",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "False",
+    "forwardable": "False",
+    "globalReachable": "False",
+    "id": "::1/128",
+    "name": "Loopback Address",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc4291.html"
+    ],
+    "reserved": "True",
+    "source": "False",
+    "termination": ""
+  },
+  {
+    "destination": "False",
+    "forwardable": "False",
+    "globalReachable": "False",
+    "id": "::ffff:0:0/96",
+    "name": "IPv4-mapped Address",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc4291.html"
+    ],
+    "reserved": "True",
+    "source": "False",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "False",
+    "id": "fc00::/7",
+    "name": "Unique-Local",
+    "notes": [
+      "See for more details on the routability of Unique-Local addresses. The Unique-Local prefix is drawn from the IPv6 Global Unicast Address range, but is specified as not globally routed."
+    ],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc4193.html",
+      "https://www.rfc-editor.org/rfc/rfc8190.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "False",
+    "globalReachable": "False",
+    "id": "fe80::/10",
+    "name": "Link-Local Unicast",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc4291.html"
+    ],
+    "reserved": "True",
+    "source": "True",
+    "termination": ""
+  }
+]

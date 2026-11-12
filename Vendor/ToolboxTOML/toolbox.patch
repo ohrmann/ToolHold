@@ -1,0 +1,279 @@
+--- a/src/tomlc17.c
++++ b/src/tomlc17.c
+@@ -267,7 +267,7 @@
+ };
+ 
+ /* Represents a multi-part key */
+-#define KEYPARTMAX 10
++#define KEYPARTMAX 64
+ typedef struct keypart_t keypart_t;
+ struct keypart_t {
+   int nspan;
+@@ -279,10 +279,10 @@
+ 
+ // Maximum levels of brackets and braces to prevent
+ // stack overflow during recursive descent of the parser.
+-#define BRACKET_LEVEL_MAX 30
+-#define BRACE_LEVEL_MAX 30
+-#define TABLE_MAX (1 << 14) // 16k
+-#define ARRAY_MAX (1 << 14) // 16k
++#define BRACKET_LEVEL_MAX 64
++#define BRACE_LEVEL_MAX 64
++#define TABLE_MAX 262144 // Bounded by Toolbox input limit, not an extra node limit
++#define ARRAY_MAX 262144 // Bounded by Toolbox input limit, not an extra node limit
+ 
+ // Buffer size for scanning a number or a timestamp. TOML does not limit the
+ // length of either literal; tomlc17 does, like the limits above: a literal that
+@@ -364,6 +364,10 @@
+ 
+   int bracket_level; // count depth of [ ]
+   int brace_level;   // count depth of { }
++  int toolbox_error_kind;
++  unsigned toolbox_ticks;
++  int (*toolbox_cancelled)(void *);
++  void *toolbox_context;
+ };
+ static void scan_init(scanner_t *sp, const char *src, int len, char *errbuf,
+                       int errbufsz);
+@@ -392,6 +396,7 @@
+ typedef struct parser_t parser_t;
+ struct parser_t {
+   scanner_t scanner;
++  const char *toolbox_source_begin;
+   toml_datum_t toptab;  // top table
+   toml_datum_t *curtab; // current table
+   pool_t *pool;         // memory pool for strings
+@@ -1086,10 +1091,18 @@
+   return toml_parse_named(src, len, NULL);
+ }
+ 
++static toml_result_t toolbox_parse_impl(const char *src, int len, const char *name, int (*cancelled)(void *), void *context);
+ toml_result_t toml_parse_named(const char *src, int len, const char *name) {
++  return toolbox_parse_impl(src, len, name, NULL, NULL);
++}
++toml_result_t toml_toolbox_parse(const char *src, int len, int (*cancelled)(void *), void *context) {
++  return toolbox_parse_impl(src, len, NULL, cancelled, context);
++}
++static toml_result_t toolbox_parse_impl(const char *src, int len, const char *name, int (*cancelled)(void *), void *context) {
+   toml_result_t result = {0};
+   parser_t parser = {0};
+   parser_t *pp = &parser;
++  pp->toolbox_source_begin = src;
+ 
+   // Check that src is not NULL.
+   if (!src) {
+@@ -1153,6 +1166,8 @@
+ 
+   // Initialize scanner. Scan error will be printed into pp->ebuf.
+   scan_init(&pp->scanner, src, len, pp->ebuf.ptr, pp->ebuf.len);
++  pp->scanner.toolbox_cancelled = cancelled;
++  pp->scanner.toolbox_context = context;
+ 
+   // Keep parsing until FIN
+   for (;;) {
+@@ -1196,6 +1211,7 @@
+   }
+ 
+   // return result
++  if (pp->scanner.toolbox_error_kind == 3) goto bail;
+   result.ok = true;
+   set_source_recursive(&pp->toptab, pp->srcname);
+   result.toptab = pp->toptab;
+@@ -1203,6 +1219,8 @@
+   return result;
+ 
+ bail:
++  result.toolbox_error_kind = pp->scanner.toolbox_error_kind;
++  if (pp->scanner.cur && pp->toolbox_source_begin) result.toolbox_error_offset = (int)(pp->scanner.cur - pp->toolbox_source_begin);
+   // return error
+   datum_free(&pp->toptab);
+   pool_destroy(pp->pool);
+@@ -1326,6 +1344,7 @@
+     }
+ 
+     if (n >= KEYPARTMAX) {
++      pp->scanner.toolbox_error_kind = 1;
+       return SETERROR(pp->ebuf, tok.lineno, "too many key parts");
+     }
+ 
+@@ -1437,6 +1456,9 @@
+       DO(scan_value(&pp->scanner, &tok));
+     } while (tok.toktyp == TOK_ENDL);
+ 
++    if (tok.toktyp == TOK_FIN) {
++      return SETERROR(pp->ebuf, tok.lineno, "expected ']' before end of input");
++    }
+     // If got an RBRACK: done!
+     if (tok.toktyp == TOK_RBRACK) {
+       break;
+@@ -1495,6 +1517,9 @@
+   for (;;) {
+     DO(scan_key(&pp->scanner, &tok));
+ 
++    if (tok.toktyp == TOK_FIN) {
++      return SETERROR(pp->ebuf, tok.lineno, "expected '}' before end of input");
++    }
+     // Got an RBRACE: done!
+     if (tok.toktyp == TOK_RBRACE) {
+       if (was_comma) {
+@@ -1585,7 +1610,17 @@
+ }
+ 
+ // Parse a value.
++static int toolbox_parse_val_impl(parser_t *pp, token_t tok, toml_datum_t *ret);
+ static int parse_val(parser_t *pp, token_t tok, toml_datum_t *ret) {
++  int result = toolbox_parse_val_impl(pp, tok, ret);
++  if (result == 0) {
++    ret->toolbox_offset = (int)(tok.str.ptr - pp->toolbox_source_begin);
++    ret->toolbox_length = (ret->type == TOML_ARRAY || ret->type == TOML_TABLE)
++      ? (int)(pp->scanner.cur - tok.str.ptr) : tok.str.len;
++  }
++  return result;
++}
++static int toolbox_parse_val_impl(parser_t *pp, token_t tok, toml_datum_t *ret) {
+   *ret = DATUM_ZERO; // initialize
+ 
+   // val = string / boolean / array / inline-table / date-time / float / integer
+@@ -1995,6 +2030,12 @@
+ 
+ // Get the next char
+ static int scan_get(scanner_t *sp) {
++  if (((sp->toolbox_ticks++) & 255) == 0 && sp->toolbox_cancelled && sp->toolbox_cancelled(sp->toolbox_context)) {
++    sp->toolbox_error_kind = 3;
++    SETERROR(sp->ebuf, sp->lineno, "operation cancelled");
++    sp->errmsg = sp->ebuf.ptr;
++    return TOK_FIN;
++  }
+   int ret = TOK_FIN;
+   const char *p = sp->cur;
+   if (p < sp->endp) {
+@@ -2495,6 +2536,7 @@
+     return SETERROR(sp->ebuf, lineno, "invalid time");
+   }
+   if (len + 1 >= (int)sizeof(buffer)) {
++    sp->toolbox_error_kind = 1;
+     return SETERROR(sp->ebuf, lineno, "timestamp too long");
+   }
+   if (!is_valid_time(hour, minute, sec, usec)) {
+@@ -2586,6 +2628,7 @@
+   *tok = mktoken(sp, toktyp);
+   n = p - buffer;
+   if (n + 1 >= (int)sizeof(buffer)) {
++    sp->toolbox_error_kind = 1;
+     return SETERROR(sp->ebuf, lineno, "timestamp too long");
+   }
+   tok->str.len = n;
+@@ -2698,6 +2741,7 @@
+   }
+   int len = p - buffer;
+   if (len + 1 >= (int)sizeof(buffer)) {
++    sp->toolbox_error_kind = 1;
+     return SETERROR(sp->ebuf, lineno, "number too long");
+   }
+   buffer[len] = 0;
+@@ -2716,7 +2760,8 @@
+     size_t dplen = strlen(dp);
+     // Result is strlen(buffer) - 1 + dplen bytes plus NUL; ensure it fits.
+     if (strlen(buffer) + dplen > sizeof(buffer)) {
+-      return SETERROR(sp->ebuf, lineno, "number too long");
++      sp->toolbox_error_kind = 1;
++    return SETERROR(sp->ebuf, lineno, "number too long");
+     }
+     // Shift the tail (including NUL) to make room, then write dp over '.'.
+     // Regions overlap, hence memmove.
+@@ -2740,6 +2785,7 @@
+   int is_ok_subnormal =
+       (errno == ERANGE) && fp64_mag != 0 && fp64_mag < 0x7ff0000000000000ULL;
+   if ((errno && !is_ok_subnormal) || *q || q == buffer) {
++    if (errno == ERANGE) sp->toolbox_error_kind = 2;
+     return SETERROR(sp->ebuf, lineno, "error parsing float");
+   }
+ 
+@@ -2780,7 +2826,8 @@
+       p += strspn(p, span);
+       int len = p - buffer;
+       if (len + 1 >= (int)sizeof(buffer)) {
+-        return SETERROR(sp->ebuf, lineno, "number too long");
++        sp->toolbox_error_kind = 1;
++    return SETERROR(sp->ebuf, lineno, "number too long");
+       }
+       buffer[len] = 0;
+ 
+@@ -2794,7 +2841,8 @@
+       errno = 0;
+       tok->u.int64 = strtoll(buffer + 2, &q, base);
+       if (errno || *q || q == buffer + 2) {
+-        return SETERROR(sp->ebuf, lineno, "error parsing integer");
++        if (errno == ERANGE) sp->toolbox_error_kind = 2;
++    return SETERROR(sp->ebuf, lineno, "error parsing integer");
+       }
+       tok->str.len = len;
+       sp->cur += len;
+@@ -2815,6 +2863,7 @@
+   p += strspn(p, "0123456789_+-.eE");
+   int len = p - buffer;
+   if (len + 1 >= (int)sizeof(buffer)) {
++    sp->toolbox_error_kind = 1;
+     return SETERROR(sp->ebuf, lineno, "number too long");
+   }
+   buffer[len] = 0;
+@@ -2831,6 +2880,7 @@
+     if (*q && strchr(".eE", *q)) {
+       return scan_float(sp, tok); // try to fit a float
+     }
++    if (errno == ERANGE) sp->toolbox_error_kind = 2;
+     return SETERROR(sp->ebuf, lineno, "error parsing integer");
+   }
+ 
+@@ -3075,10 +3125,15 @@
+ 
+ // Check for stack overflow due to excessive number of brackets or braces
+ static int check_overflow(scanner_t *sp, token_t *tok) {
++  if ((tok->toktyp == TOK_LBRACK || tok->toktyp == TOK_LBRACE) && sp->bracket_level + sp->brace_level >= 64) {
++    sp->toolbox_error_kind = 1;
++    return SETERROR(sp->ebuf, sp->lineno, "container depth limit reached");
++  }
+   switch (tok->toktyp) {
+   case TOK_LBRACK:
+     sp->bracket_level++;
+     if (sp->bracket_level > BRACKET_LEVEL_MAX) {
++      sp->toolbox_error_kind = 1;
+       return SETERROR(sp->ebuf, sp->lineno, "stack overflow");
+     }
+     break;
+@@ -3088,6 +3143,7 @@
+   case TOK_LBRACE:
+     sp->brace_level++;
+     if (sp->brace_level > BRACE_LEVEL_MAX) {
++      sp->toolbox_error_kind = 1;
+       return SETERROR(sp->ebuf, sp->lineno, "stack overflow");
+     }
+     break;
+--- a/src/tomlc17.h
++++ b/src/tomlc17.h
+@@ -64,6 +64,7 @@
+  */
+ typedef struct toml_datum_t toml_datum_t;
+ struct toml_datum_t {
++  int toolbox_offset, toolbox_length; /* Exact source UTF-8 byte span; 0 for implicit tables. */
+   toml_type_t type;   /**< Type of the datum */
+   uint32_t flag;      /**< Internal flag, do not use */
+   int lineno;         /**< 1-based source line number, 0 if synthesized */
+@@ -114,6 +115,8 @@
+  */
+ typedef struct toml_result_t toml_result_t;
+ struct toml_result_t {
++  int toolbox_error_kind; /* 0 syntax, 1 resource, 2 numeric range, 3 cancelled */
++  int toolbox_error_offset; /* Reported detection region in input UTF-8 bytes. */
+   bool ok;             /**< True if parsing was successful */
+   toml_datum_t toptab; /**< The top-level table (valid if ok is true) */
+   char errmsg[200];    /**< Error message (valid if ok is false) */
+@@ -129,6 +132,8 @@
+  * @return A toml_result_t structure. Must be freed with toml_free().
+  */
+ TOML_EXTERN toml_result_t toml_parse(const char *src, int len);
++/* Toolbox: per-parse cancellation, no global mutable option changes. */
++TOML_EXTERN toml_result_t toml_toolbox_parse(const char *src, int len, int (*cancelled)(void *), void *context);
+ 
+ /**
+  * @brief Parse a TOML document, tagging every datum with a source name.

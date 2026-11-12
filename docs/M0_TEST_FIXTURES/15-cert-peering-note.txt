@@ -1,0 +1,1 @@
+Use a separately generated TEST X.509 (no private keys in fixture pack). Document openssl version/algorithm used; do not commit secrets.

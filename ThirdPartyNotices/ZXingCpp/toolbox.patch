@@ -1,0 +1,59 @@
+--- upstream/DecoderResult.h
++++ toolbox/DecoderResult.h
+@@ -25,6 +25,8 @@
+ class DecoderResult
+ {
+ 	Content _content;
++	// Toolbox: distinguish successfully decoded empty content from a default result.
++	bool _decoded = false;
+ 	std::string _ecLevel;
+ 	int _lineCount = 0;
+ 	int _versionNumber = 0;
+@@ -38,7 +40,7 @@
+ public:
+ 	DecoderResult() = default;
+ 	DecoderResult(Error error) : _error(std::move(error)) {}
+-	DecoderResult(Content&& bytes) : _content(std::move(bytes)) {}
++	DecoderResult(Content&& bytes) : _content(std::move(bytes)), _decoded(true) {}
+ 
+ 	DecoderResult(DecoderResult&&) noexcept = default;
+ 	DecoderResult& operator=(DecoderResult&&) noexcept = default;
+@@ -48,7 +50,7 @@
+ 
+ 	bool isValid(bool includeErrors = false) const
+ 	{
+-		return (!_content.bytes.empty() && !_error) || (includeErrors && !!_error);
++		return (_decoded && !_error) || (includeErrors && !!_error);
+ 	}
+ 
+ 	const Content& content() const & { return _content; }
+--- upstream/BarcodeData.h
++++ toolbox/BarcodeData.h
+@@ -55,7 +55,7 @@
+ 
+ 	bool operator==(const BarcodeData& other) const;
+ 
+-	inline bool isValid() const { return format != BarcodeFormat::None && !content.bytes.empty() && !error; }
++	inline bool isValid() const { return format != BarcodeFormat::None && !error; }
+ 
+ 	inline int orientation() const { return narrow_cast<int>(std::lround(position.orientation() * 180 / std::numbers::pi)); }
+ };
+--- upstream/ECI.h
++++ toolbox/ECI.h
+@@ -59,10 +59,13 @@
+ 	return ToInt(eci) >= 0 && ToInt(eci) <= 170;
+ }
+ 
+-inline constexpr bool CanProcess(ECI eci)
++CharacterSet ToCharacterSet(ECI eci);
++
++inline bool CanProcess(ECI eci)
+ {
+-	// see https://github.com/zxing-cpp/zxing-cpp/commit/d8587545434d533c4e568181e1c12ef04a8e42d9#r74864359
+-	return ToInt(eci) <= 899;
++	// Toolbox: a reserved ECI can be <=899 but absent from the charset table.
++	// Treat unsupported conversions as UnknownECI, never silently drop their text.
++	return eci == ECI::Unknown || ToCharacterSet(eci) != CharacterSet::Unknown;
+ }
+ 
+ /**

@@ -1,0 +1,653 @@
+[
+  {
+    "high": 100,
+    "id": "100",
+    "low": 100,
+    "name": "Continue",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 101,
+    "id": "101",
+    "low": 101,
+    "name": "Switching Protocols",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 102,
+    "id": "102",
+    "low": 102,
+    "name": "Processing",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc2518.html"
+    ]
+  },
+  {
+    "high": 103,
+    "id": "103",
+    "low": 103,
+    "name": "Early Hints",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc8297.html"
+    ]
+  },
+  {
+    "high": 104,
+    "id": "104",
+    "low": 104,
+    "name": "Upload Resumption Supported (TEMPORARY - registered 2024-11-13, extension registered 2025-09-15, expires 2026-11-13)",
+    "references": []
+  },
+  {
+    "high": 199,
+    "id": "105-199",
+    "low": 105,
+    "name": "Unassigned",
+    "references": []
+  },
+  {
+    "high": 200,
+    "id": "200",
+    "low": 200,
+    "name": "OK",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 201,
+    "id": "201",
+    "low": 201,
+    "name": "Created",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 202,
+    "id": "202",
+    "low": 202,
+    "name": "Accepted",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 203,
+    "id": "203",
+    "low": 203,
+    "name": "Non-Authoritative Information",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 204,
+    "id": "204",
+    "low": 204,
+    "name": "No Content",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 205,
+    "id": "205",
+    "low": 205,
+    "name": "Reset Content",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 206,
+    "id": "206",
+    "low": 206,
+    "name": "Partial Content",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 207,
+    "id": "207",
+    "low": 207,
+    "name": "Multi-Status",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc4918.html"
+    ]
+  },
+  {
+    "high": 208,
+    "id": "208",
+    "low": 208,
+    "name": "Already Reported",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc5842.html"
+    ]
+  },
+  {
+    "high": 225,
+    "id": "209-225",
+    "low": 209,
+    "name": "Unassigned",
+    "references": []
+  },
+  {
+    "high": 226,
+    "id": "226",
+    "low": 226,
+    "name": "IM Used",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc3229.html"
+    ]
+  },
+  {
+    "high": 299,
+    "id": "227-299",
+    "low": 227,
+    "name": "Unassigned",
+    "references": []
+  },
+  {
+    "high": 300,
+    "id": "300",
+    "low": 300,
+    "name": "Multiple Choices",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 301,
+    "id": "301",
+    "low": 301,
+    "name": "Moved Permanently",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 302,
+    "id": "302",
+    "low": 302,
+    "name": "Found",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 303,
+    "id": "303",
+    "low": 303,
+    "name": "See Other",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 304,
+    "id": "304",
+    "low": 304,
+    "name": "Not Modified",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 305,
+    "id": "305",
+    "low": 305,
+    "name": "Use Proxy",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 306,
+    "id": "306",
+    "low": 306,
+    "name": "(Unused)",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 307,
+    "id": "307",
+    "low": 307,
+    "name": "Temporary Redirect",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 308,
+    "id": "308",
+    "low": 308,
+    "name": "Permanent Redirect",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 399,
+    "id": "309-399",
+    "low": 309,
+    "name": "Unassigned",
+    "references": []
+  },
+  {
+    "high": 400,
+    "id": "400",
+    "low": 400,
+    "name": "Bad Request",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 401,
+    "id": "401",
+    "low": 401,
+    "name": "Unauthorized",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 402,
+    "id": "402",
+    "low": 402,
+    "name": "Payment Required",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 403,
+    "id": "403",
+    "low": 403,
+    "name": "Forbidden",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 404,
+    "id": "404",
+    "low": 404,
+    "name": "Not Found",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 405,
+    "id": "405",
+    "low": 405,
+    "name": "Method Not Allowed",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 406,
+    "id": "406",
+    "low": 406,
+    "name": "Not Acceptable",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 407,
+    "id": "407",
+    "low": 407,
+    "name": "Proxy Authentication Required",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 408,
+    "id": "408",
+    "low": 408,
+    "name": "Request Timeout",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 409,
+    "id": "409",
+    "low": 409,
+    "name": "Conflict",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 410,
+    "id": "410",
+    "low": 410,
+    "name": "Gone",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 411,
+    "id": "411",
+    "low": 411,
+    "name": "Length Required",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 412,
+    "id": "412",
+    "low": 412,
+    "name": "Precondition Failed",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 413,
+    "id": "413",
+    "low": 413,
+    "name": "Content Too Large",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 414,
+    "id": "414",
+    "low": 414,
+    "name": "URI Too Long",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 415,
+    "id": "415",
+    "low": 415,
+    "name": "Unsupported Media Type",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 416,
+    "id": "416",
+    "low": 416,
+    "name": "Range Not Satisfiable",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 417,
+    "id": "417",
+    "low": 417,
+    "name": "Expectation Failed",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 418,
+    "id": "418",
+    "low": 418,
+    "name": "(Unused)",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 420,
+    "id": "419-420",
+    "low": 419,
+    "name": "Unassigned",
+    "references": []
+  },
+  {
+    "high": 421,
+    "id": "421",
+    "low": 421,
+    "name": "Misdirected Request",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 422,
+    "id": "422",
+    "low": 422,
+    "name": "Unprocessable Content",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 423,
+    "id": "423",
+    "low": 423,
+    "name": "Locked",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc4918.html"
+    ]
+  },
+  {
+    "high": 424,
+    "id": "424",
+    "low": 424,
+    "name": "Failed Dependency",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc4918.html"
+    ]
+  },
+  {
+    "high": 425,
+    "id": "425",
+    "low": 425,
+    "name": "Too Early",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc8470.html"
+    ]
+  },
+  {
+    "high": 426,
+    "id": "426",
+    "low": 426,
+    "name": "Upgrade Required",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 427,
+    "id": "427",
+    "low": 427,
+    "name": "Unassigned",
+    "references": []
+  },
+  {
+    "high": 428,
+    "id": "428",
+    "low": 428,
+    "name": "Precondition Required",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc6585.html"
+    ]
+  },
+  {
+    "high": 429,
+    "id": "429",
+    "low": 429,
+    "name": "Too Many Requests",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc6585.html"
+    ]
+  },
+  {
+    "high": 430,
+    "id": "430",
+    "low": 430,
+    "name": "Unassigned",
+    "references": []
+  },
+  {
+    "high": 431,
+    "id": "431",
+    "low": 431,
+    "name": "Request Header Fields Too Large",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc6585.html"
+    ]
+  },
+  {
+    "high": 450,
+    "id": "432-450",
+    "low": 432,
+    "name": "Unassigned",
+    "references": []
+  },
+  {
+    "high": 451,
+    "id": "451",
+    "low": 451,
+    "name": "Unavailable For Legal Reasons",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc7725.html"
+    ]
+  },
+  {
+    "high": 499,
+    "id": "452-499",
+    "low": 452,
+    "name": "Unassigned",
+    "references": []
+  },
+  {
+    "high": 500,
+    "id": "500",
+    "low": 500,
+    "name": "Internal Server Error",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 501,
+    "id": "501",
+    "low": 501,
+    "name": "Not Implemented",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 502,
+    "id": "502",
+    "low": 502,
+    "name": "Bad Gateway",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 503,
+    "id": "503",
+    "low": 503,
+    "name": "Service Unavailable",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 504,
+    "id": "504",
+    "low": 504,
+    "name": "Gateway Timeout",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 505,
+    "id": "505",
+    "low": 505,
+    "name": "HTTP Version Not Supported",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc9110.html"
+    ]
+  },
+  {
+    "high": 506,
+    "id": "506",
+    "low": 506,
+    "name": "Variant Also Negotiates",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc2295.html"
+    ]
+  },
+  {
+    "high": 507,
+    "id": "507",
+    "low": 507,
+    "name": "Insufficient Storage",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc4918.html"
+    ]
+  },
+  {
+    "high": 508,
+    "id": "508",
+    "low": 508,
+    "name": "Loop Detected",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc5842.html"
+    ]
+  },
+  {
+    "high": 509,
+    "id": "509",
+    "low": 509,
+    "name": "Unassigned",
+    "references": []
+  },
+  {
+    "high": 510,
+    "id": "510",
+    "low": 510,
+    "name": "Not Extended (OBSOLETED)",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc2774.html"
+    ]
+  },
+  {
+    "high": 511,
+    "id": "511",
+    "low": 511,
+    "name": "Network Authentication Required",
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc6585.html"
+    ]
+  },
+  {
+    "high": 599,
+    "id": "512-599",
+    "low": 512,
+    "name": "Unassigned",
+    "references": []
+  }
+]

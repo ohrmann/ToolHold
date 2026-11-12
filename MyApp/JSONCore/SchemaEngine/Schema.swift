@@ -1,0 +1,474 @@
+// Vendored MIT: ajevans99/swift-json-schema @ 8d314b50; see ThirdPartyNotices/SwiftJSONSchema.
+import Foundation
+
+public struct Schema: ValidatableSchema {
+  let schema: any ValidatableSchema
+  let rawSchema: JSONValue
+  let location: JSONPointer
+  let context: SchemaEngineContext
+  let documentURL: URL
+
+  public init(
+    rawSchema: JSONValue,
+    location: JSONPointer = .init(),
+    context: SchemaEngineContext,
+    baseURI: URL = URL(string: "https://swift-json-schema.invalid/in-memory")!
+  ) throws(SchemaIssue) {
+    guard SchemaRuntime.enter() else { throw .runtimeLimit }
+    defer { SchemaRuntime.leave() }
+    self.rawSchema = rawSchema
+    self.location = location
+    self.context = context
+
+    let documentURL = baseURI.withoutFragment ?? baseURI
+    self.documentURL = documentURL
+    context.registerDocument(rawSchema, at: documentURL)
+
+    switch rawSchema {
+    case .boolean(let boolValue):
+      self.schema = BooleanSchema(
+        schemaValue: boolValue,
+        location: location,
+        context: context,
+        documentURL: documentURL
+      )
+    case .object(let schemaDict):
+      self.schema = try ObjectSchema(
+        schemaValue: schemaDict,
+        location: location,
+        context: context,
+        baseURI: baseURI,
+        documentURL: documentURL
+      )
+    default:
+      throw .schemaShouldBeBooleanOrObject
+    }
+  }
+
+  public init(
+    instance: String,
+    dialect: Dialect = .draft2020_12,
+    remoteSchemas: [String: JSONValue] = [:],
+    formatValidators: [any FormatValidator] = []
+  ) throws {
+    try self.init(
+      rawSchema: JSONValue.parse(instance),
+      context: .init(
+        dialect: dialect,
+        remoteSchema: remoteSchemas,
+        formatValidators: formatValidators
+      )
+    )
+  }
+
+  @available(*, deprecated, message: "Omit decoder: to preserve JSON number precision.")
+  public init(
+    instance: String,
+    dialect: Dialect = .draft2020_12,
+    decoder: JSONDecoder,
+    remoteSchemas: [String: JSONValue] = [:],
+    formatValidators: [any FormatValidator] = []
+  ) throws {
+    let value = try decoder.decode(JSONValue.self, from: Data(instance.utf8))
+    try self.init(
+      rawSchema: value,
+      context: .init(
+        dialect: dialect,
+        remoteSchema: remoteSchemas,
+        formatValidators: formatValidators
+      )
+    )
+  }
+
+  init(
+    schema: any ValidatableSchema,
+    location: JSONPointer,
+    context: SchemaEngineContext,
+    documentURL: URL = URL(string: "https://swift-json-schema.invalid/in-memory")!
+  ) {
+    self.schema = schema
+    self.rawSchema = schema.jsonValue
+    self.location = location
+    self.context = context
+    self.documentURL = documentURL
+  }
+
+  /// Each call starts an independent evaluation, including calls made reentrantly
+  /// by a custom format validator. Nested schema references retain their caller's scope.
+  public func validate(_ instance: JSONValue, at location: JSONPointer) -> ValidationResult {
+    defer { context.clearEvaluationCaches() }
+    return SchemaEvaluation.withoutRecording {
+      SchemaEngineContext.withFreshEvaluation { validateSubschema(instance, at: location) }
+    }
+  }
+
+  func validateSubschema(_ instance: JSONValue, at location: JSONPointer) -> ValidationResult {
+    SchemaEvaluation.record(self, instance: instance) { schema.validate(instance, at: location) }
+  }
+
+  func validate(
+    _ instance: JSONValue,
+    at location: JSONPointer,
+    annotations: inout AnnotationContainer
+  ) -> ValidationResult {
+    SchemaEvaluation.record(self, instance: instance) {
+      (schema as? ObjectSchema)?.validate(instance, at: location, annotations: &annotations)
+        ?? schema.validate(instance, at: location)
+    }
+  }
+
+  /// Validates this schema against its dialect's meta-schema.
+  ///
+  /// This method loads the meta-schema for the dialect used by this schema
+  /// and validates the schema's raw JSON representation against it.
+  ///
+  /// - Returns: A `ValidationResult` indicating whether the schema is valid
+  ///   according to its meta-schema.
+  /// - Throws: An error if the meta-schema cannot be loaded.
+  ///
+  /// Example:
+  /// ```swift
+  /// let schema = try Schema(instance: """
+  ///   {
+  ///     "type": "object",
+  ///     "properties": {
+  ///       "name": { "type": "string" }
+  ///     }
+  ///   }
+  ///   """)
+  /// let result = try schema.validateAgainstMetaSchema()
+  /// print(result.isValid) // true
+  /// ```
+  public func validateAgainstMetaSchema() throws -> ValidationResult {
+    let metaSchema = try context.dialect.loadMetaSchema()
+    guard let rawSchema = context.rootRawSchema else {
+      throw SchemaIssue.missingRootRawSchema
+    }
+    return metaSchema.validate(rawSchema)
+  }
+}
+
+internal struct BooleanSchema: ValidatableSchema {
+  let schemaValue: Bool
+  let location: JSONPointer
+  let context: SchemaEngineContext
+  let documentURL: URL
+
+  internal init(
+    schemaValue: Bool,
+    location: JSONPointer,
+    context: SchemaEngineContext,
+    documentURL: URL = URL(string: "https://swift-json-schema.invalid/in-memory")!
+  ) {
+    self.schemaValue = schemaValue
+    self.location = location
+    self.context = context
+    self.documentURL = documentURL
+  }
+
+  internal func validate(_ instance: JSONValue, at location: JSONPointer) -> ValidationResult {
+    let absoluteLocation = self.location.absoluteLocation(relativeTo: documentURL)
+    return ValidationResult(
+      valid: schemaValue,
+      keywordLocation: self.location,
+      absoluteKeywordLocation: absoluteLocation,
+      instanceLocation: location,
+      errors: schemaValue
+        ? []
+        : [
+          .init(
+            keyword: "boolean",
+            message: "Value is rejected by the false schema.",
+            keywordLocation: self.location,
+            absoluteKeywordLocation: absoluteLocation,
+            instanceLocation: location
+          )
+        ]
+    )
+  }
+
+  internal func asSchema() -> Schema {
+    .init(schema: self, location: location, context: context, documentURL: documentURL)
+  }
+}
+
+internal struct ObjectSchema: ValidatableSchema {
+  let schemaValue: OrderedDictionary<String, JSONValue>
+  let location: JSONPointer
+  let context: SchemaEngineContext
+  let keywords: [any Keyword]
+  let uri: URL?
+  let documentURL: URL
+  /// Name and base URI for any `$dynamicAnchor` declared on this schema.
+  let dynamicAnchorInfo: (name: String, baseURI: URL)?
+  private let selfAbsoluteLocation: URL?
+  private let resourceURL: URL
+
+  internal init(
+    schemaValue: OrderedDictionary<String, JSONValue>,
+    location: JSONPointer,
+    context: SchemaEngineContext,
+    baseURI: URL = URL(string: "https://swift-json-schema.invalid/in-memory")!,
+    documentURL: URL = URL(string: "https://swift-json-schema.invalid/in-memory")!
+  ) throws(SchemaIssue) {
+    self.schemaValue = schemaValue
+    self.location = location
+    self.context = context
+    self.documentURL = documentURL
+    let (processedURI, keywords, dynamicAnchorInfo) = try Self.collectKeywords(
+      from: schemaValue,
+      location: location,
+      context: context,
+      baseURI: baseURI
+    )
+    self.keywords = keywords
+    self.uri = processedURI
+    self.dynamicAnchorInfo = dynamicAnchorInfo
+    let physicalBase = context.dialect == .draft7 && processedURI?.fragment?.isEmpty == false ? documentURL : processedURI ?? documentURL
+    self.selfAbsoluteLocation = location.absoluteLocation(relativeTo: physicalBase)
+    self.resourceURL = processedURI?.withoutFragment ?? documentURL
+  }
+
+  private static func collectKeywords(
+    from schemaValue: OrderedDictionary<String, JSONValue>,
+    location: JSONPointer,
+    context: SchemaEngineContext,
+    baseURI: URL
+  ) throws(SchemaIssue) -> (
+    processedURI: URL?,
+    keywords: [any Keyword],
+    dynamicAnchorInfo: (name: String, baseURI: URL)?
+  ) {
+    var keywords = [any Keyword]()
+    var processedURI = baseURI
+
+    var dynamicAnchorInfo: (name: String, baseURI: URL)? = nil
+
+    var didProcessIdentiferKeyword = false
+
+    var activeVocabularies = context.activeVocabularies
+
+    // First pass: Process $schema to inherit metaschema vocabularies
+    if let schemaKeywordValue = schemaValue[Keywords.SchemaKeyword.name] {
+      let keywordLocation = location.appending(.key(Keywords.SchemaKeyword.name))
+      let schemaKeyword = Keywords.SchemaKeyword(
+        value: schemaKeywordValue,
+        context: .init(location: keywordLocation, context: context, uri: processedURI)
+      )
+      keywords.append(schemaKeyword)
+
+      if let vocabularies = schemaKeyword.resolvedVocabularies() {
+        activeVocabularies = vocabularies
+      }
+    }
+
+    // Next, process vocabulary keyword to determine active vocabularies declared on schema
+    if context.dialect != .draft7, let vocabularyValue = schemaValue[Keywords.Vocabulary.name] {
+      let keywordLocation = location.appending(.key(Keywords.Vocabulary.name))
+      let vocabulary = Keywords.Vocabulary(
+        value: vocabularyValue,
+        context: .init(location: keywordLocation, context: context, uri: processedURI)
+      )
+      keywords.append(vocabulary)
+
+      // Validate vocabularies
+      try vocabulary.validateVocabularies()
+
+      // Set active vocabularies in the context for sub-schemas
+      if !context.fixedStandardDialect { activeVocabularies = vocabulary.getActiveVocabularies() }
+    }
+
+    // Get keywords filtered by active vocabularies (either from $vocabulary or context)
+    let availableKeywords = context.dialect.keywords(activeVocabularies: activeVocabularies)
+
+    return context.withActiveVocabularies(activeVocabularies) {
+      // Second pass: Process all other keywords using filtered keyword list
+      for keywordType in availableKeywords where schemaValue.keys.contains(keywordType.name) {
+        if context.dialect == .draft7, schemaValue["$ref"] != nil, keywordType.name != "$ref" { continue }
+        // Skip vocabulary keyword as it's already processed
+        if keywordType.name == Keywords.Vocabulary.name
+          || keywordType.name == Keywords.SchemaKeyword.name
+        {
+          continue
+        }
+
+        let value = schemaValue[keywordType.name]!
+        let keywordLocation = location.appending(.key(keywordType.name))
+        let keyword = keywordType.init(
+          value: value,
+          context: .init(location: keywordLocation, context: context, uri: processedURI)
+        )
+        keywords.append(keyword)
+
+        if let identifier = keyword as? (any IdentifierKeyword) {
+          identifier.processIdentifier()
+
+          if let id = identifier as? Keywords.Identifier {
+            processedURI = id.processSubschema(baseURI: baseURI)
+            didProcessIdentiferKeyword = true
+          }
+          if let dynamic = identifier as? Keywords.DynamicAnchor, let name = dynamic.value.string {
+            dynamicAnchorInfo = (name, processedURI)
+          }
+        }
+      }
+
+      if location.isRoot && !didProcessIdentiferKeyword {
+        let documentURL = baseURI.withoutFragment ?? baseURI
+        context.registerIdentifier(
+          baseURI,
+          location: .init(document: documentURL, pointer: location)
+        )
+      }
+
+      return (processedURI, keywords, dynamicAnchorInfo)
+    }
+  }
+
+  internal func validate(_ instance: JSONValue, at location: JSONPointer) -> ValidationResult {
+    var annotations = AnnotationContainer()
+    return validate(instance, at: location, annotations: &annotations)
+  }
+
+  internal func validate(
+    _ instance: JSONValue,
+    at location: JSONPointer,
+    annotations: inout AnnotationContainer
+  ) -> ValidationResult {
+    guard SchemaRuntime.enter() else { return SchemaRuntime.failureResult(at: location, keyword: self.location) }
+    defer { SchemaRuntime.leave() }
+    let evaluationKey = resourceURL.absoluteString + self.location.jsonPointerString
+    guard SchemaRuntime.beginEvaluation(schema: evaluationKey, instance: location.jsonPointerString) else {
+      return SchemaRuntime.failureResult(at: location, keyword: self.location)
+    }
+    defer { SchemaRuntime.endEvaluation(schema: evaluationKey, instance: location.jsonPointerString) }
+    // Push the dynamic anchors registered for THIS schema's resource (the
+    // resource it lives in, identified by its `$id`-resolved `uri`, falling
+    // back to the document URL when the schema has no `$id`). This makes the
+    // resource's `$dynamicAnchor`s reachable while the schema is on the
+    // dynamic scope chain. Anchors from sibling resources (entered via a
+    // different `$id`) are NOT visible — that's what the previous
+    // implementation got wrong by keying on `documentURL` (always the root
+    // document), which conflated all resources in a multi-`$id` document.
+    //
+    // The lookup key is normalized to never carry a fragment: if the schema's
+    // `uri` parses cleanly, we strip its fragment; otherwise we fall back to
+    // `documentURL`, which is already fragment-stripped at construction time.
+    // We deliberately do NOT fall back to a fragment-bearing `uri`, because
+    // `documentDynamicAnchors` is keyed on resource URLs without fragments
+    // and a fragment-bearing key would silently miss every anchor.
+    let resourceAnchors = context.documentDynamicAnchors[resourceURL] ?? [:]
+    var scopes: [SchemaEngineContext.DynamicScope] = [
+      resourceAnchors.mapValues {
+        (document: documentURL, pointer: $0.pointer, baseURI: $0.baseURI)
+      }
+    ]
+
+    if let dynamicAnchorInfo {
+      // A schema-level `$dynamicAnchor` overrides the document entry while this schema validates.
+      scopes.append([
+        dynamicAnchorInfo.name: (
+          document: self.documentURL,
+          pointer: self.location,
+          baseURI: dynamicAnchorInfo.baseURI
+        )
+      ])
+    }
+
+    return context.withDynamicScopes(scopes) {
+      validateKeywords(instance, at: location, annotations: &annotations)
+    }
+  }
+
+  private func validateKeywords(
+    _ instance: JSONValue,
+    at location: JSONPointer,
+    annotations: inout AnnotationContainer
+  ) -> ValidationResult {
+    var errors: [ValidationError] = []
+    var evaluationErrors: [ValidationError] = []
+    var ifResult: Bool?
+    let minContainsIsZero = keywords.contains {
+      $0 is Keywords.MinContains && $0.value.exactInteger == 0
+    }
+    for keyword in keywords {
+      guard SchemaRuntime.check() else { return SchemaRuntime.failureResult(at: location, keyword: self.location) }
+      do throws(ValidationIssue) {
+        switch keyword {
+        case let condition as Keywords.If:
+          ifResult = try condition.evaluate(instance, at: location, using: &annotations)
+        case let then as Keywords.Then:
+          try then.validate(instance, at: location, using: &annotations, condition: ifResult)
+        case let elseKeyword as Keywords.Else:
+          try elseKeyword.validate(instance, at: location, using: &annotations, condition: ifResult)
+        case let contains as Keywords.Contains:
+          try contains.validate(
+            instance,
+            at: location,
+            using: &annotations,
+            minContainsIsZero: minContainsIsZero
+          )
+        case let reference as any ReferenceKeyword:
+          try reference.validate(
+            instance,
+            at: location,
+            using: &annotations,
+            with: context,
+            baseURI: uri
+          )
+        case let applicator as any ApplicatorKeyword:
+          try applicator.validate(instance, at: location, using: &annotations)
+        case let assertion as any AssertionKeyword:
+          try assertion.validate(instance, at: location, using: annotations)
+        case let metadata as any MetadataKeyword:
+          metadata.recordAnnotation(at: location, using: &annotations)
+        default:
+          continue
+        }
+      } catch {
+        let keywordName = type(of: keyword).name
+        let validationError = error.makeValidationError(
+          keyword: keywordName,
+          keywordLocation: self.location.appending(.key(keywordName)),
+          absoluteKeywordLocation: absoluteKeywordLocation(for: keywordName),
+          instanceLocation: location
+        )
+        errors.append(validationError)
+        if error.isEvaluationFailure {
+          evaluationErrors.append(validationError)
+          break
+        }
+      }
+    }
+
+    let collectedAnnotations = annotations.allAnnotations()
+
+    return ValidationResult(
+      valid: errors.isEmpty,
+      keywordLocation: self.location,
+      absoluteKeywordLocation: selfAbsoluteLocation,
+      instanceLocation: location,
+      errors: errors.isEmpty ? nil : errors,
+      evaluationErrors: evaluationErrors.isEmpty ? nil : evaluationErrors,
+      annotations: collectedAnnotations.isEmpty ? nil : collectedAnnotations
+    )
+  }
+
+  internal func asSchema() -> Schema {
+    .init(schema: self, location: location, context: context, documentURL: documentURL)
+  }
+
+  private func baseURIForAbsoluteLocation() -> URL {
+    if context.dialect == .draft7, uri?.fragment?.isEmpty == false { return documentURL }
+    return uri ?? documentURL
+  }
+
+  private func absoluteKeywordLocation(for keywordName: String) -> URL? {
+    let pointer = self.location.appending(.key(keywordName))
+    return absoluteKeywordLocation(forPointer: pointer)
+  }
+
+  private func absoluteKeywordLocation(forPointer pointer: JSONPointer) -> URL? {
+    pointer.absoluteLocation(relativeTo: baseURIForAbsoluteLocation())
+  }
+}

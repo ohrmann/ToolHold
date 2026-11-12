@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "buffer": "6.0.3",
+    "cheerio": "1.2.0",
+    "css-tree": "3.2.1",
+    "esbuild": "0.28.2",
+    "marked": "18.1.1",
+    "mjml-browser": "5.4.1",
+    "parse5": "8.0.1",
+    "prettier": "3.9.10",
+    "sql-formatter": "15.9.0",
+    "terser": "5.51.2",
+    "yaml": "2.9.1"
+  }
+}

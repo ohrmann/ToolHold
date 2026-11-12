@@ -1,0 +1,376 @@
+[
+  {
+    "destination": "False",
+    "forwardable": "False",
+    "globalReachable": "False",
+    "id": "0.0.0.0/32",
+    "name": "\"This host on this network\"",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc1122.html"
+    ],
+    "reserved": "True",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "False",
+    "forwardable": "False",
+    "globalReachable": "False",
+    "id": "0.0.0.0/8",
+    "name": "\"This network\"",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc791.html"
+    ],
+    "reserved": "True",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "False",
+    "id": "10.0.0.0/8",
+    "name": "Private-Use",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc1918.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "False",
+    "id": "100.64.0.0/10",
+    "name": "Shared Address Space",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc6598.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "False",
+    "forwardable": "False",
+    "globalReachable": "False",
+    "id": "127.0.0.0/8",
+    "name": "Loopback",
+    "notes": [
+      "Several protocols have been granted exceptions to this rule. For examples, see and .",
+      "Several protocols have been granted exceptions to this rule. For examples, see and .",
+      "Several protocols have been granted exceptions to this rule. For examples, see and .",
+      "Several protocols have been granted exceptions to this rule. For examples, see and ."
+    ],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc1122.html"
+    ],
+    "reserved": "True",
+    "source": "False",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "False",
+    "globalReachable": "False",
+    "id": "169.254.0.0/16",
+    "name": "Link Local",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc3927.html"
+    ],
+    "reserved": "True",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "False",
+    "id": "172.16.0.0/12",
+    "name": "Private-Use",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc1918.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "False",
+    "forwardable": "False",
+    "globalReachable": "False",
+    "id": "192.0.0.0/24",
+    "name": "IETF Protocol Assignments",
+    "notes": [
+      "Not useable unless by virtue of a more specific reservation."
+    ],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc6890.html"
+    ],
+    "reserved": "False",
+    "source": "False",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "False",
+    "id": "192.0.0.0/29",
+    "name": "IPv4 Service Continuity Prefix",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc7335.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "True",
+    "id": "192.0.0.10/32",
+    "name": "Traversal Using Relays around NAT Anycast",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc8155.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "False",
+    "forwardable": "False",
+    "globalReachable": "False",
+    "id": "192.0.0.170/32",
+    "name": "NAT64/DNS64 Discovery",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc7050.html",
+      "https://www.rfc-editor.org/rfc/rfc8880.html"
+    ],
+    "reserved": "True",
+    "source": "False",
+    "termination": ""
+  },
+  {
+    "destination": "False",
+    "forwardable": "False",
+    "globalReachable": "False",
+    "id": "192.0.0.171/32",
+    "name": "NAT64/DNS64 Discovery",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc7050.html",
+      "https://www.rfc-editor.org/rfc/rfc8880.html"
+    ],
+    "reserved": "True",
+    "source": "False",
+    "termination": ""
+  },
+  {
+    "destination": "False",
+    "forwardable": "False",
+    "globalReachable": "False",
+    "id": "192.0.0.8/32",
+    "name": "IPv4 dummy address",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc7600.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "True",
+    "id": "192.0.0.9/32",
+    "name": "Port Control Protocol Anycast",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc7723.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "False",
+    "forwardable": "False",
+    "globalReachable": "False",
+    "id": "192.0.2.0/24",
+    "name": "Documentation (TEST-NET-1)",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc5737.html"
+    ],
+    "reserved": "False",
+    "source": "False",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "False",
+    "id": "192.168.0.0/16",
+    "name": "Private-Use",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc1918.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "True",
+    "id": "192.175.48.0/24",
+    "name": "Direct Delegation AS112 Service",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc7534.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "True",
+    "id": "192.31.196.0/24",
+    "name": "AS112-v4",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc7535.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "True",
+    "id": "192.52.193.0/24",
+    "name": "AMT",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc7450.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "",
+    "forwardable": "",
+    "globalReachable": "",
+    "id": "192.88.99.0/24",
+    "name": "Deprecated (6to4 Relay Anycast)",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc7526.html"
+    ],
+    "reserved": "",
+    "source": "",
+    "termination": "2015-03"
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "False",
+    "id": "192.88.99.2/32",
+    "name": "6a44-relay anycast address",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc6751.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "True",
+    "globalReachable": "False",
+    "id": "198.18.0.0/15",
+    "name": "Benchmarking",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc2544.html"
+    ],
+    "reserved": "False",
+    "source": "True",
+    "termination": ""
+  },
+  {
+    "destination": "False",
+    "forwardable": "False",
+    "globalReachable": "False",
+    "id": "198.51.100.0/24",
+    "name": "Documentation (TEST-NET-2)",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc5737.html"
+    ],
+    "reserved": "False",
+    "source": "False",
+    "termination": ""
+  },
+  {
+    "destination": "False",
+    "forwardable": "False",
+    "globalReachable": "False",
+    "id": "203.0.113.0/24",
+    "name": "Documentation (TEST-NET-3)",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc5737.html"
+    ],
+    "reserved": "False",
+    "source": "False",
+    "termination": ""
+  },
+  {
+    "destination": "False",
+    "forwardable": "False",
+    "globalReachable": "False",
+    "id": "240.0.0.0/4",
+    "name": "Reserved",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc1112.html"
+    ],
+    "reserved": "True",
+    "source": "False",
+    "termination": ""
+  },
+  {
+    "destination": "True",
+    "forwardable": "False",
+    "globalReachable": "False",
+    "id": "255.255.255.255/32",
+    "name": "Limited Broadcast",
+    "notes": [],
+    "references": [
+      "https://www.rfc-editor.org/rfc/rfc8190.html",
+      "https://www.rfc-editor.org/rfc/rfc919.html"
+    ],
+    "reserved": "True",
+    "source": "False",
+    "termination": ""
+  }
+]

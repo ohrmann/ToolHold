@@ -1,0 +1,1 @@
+https://example.invalid/api?q=one&q=two&encoded=%F0%9F%98%80&empty=&flag

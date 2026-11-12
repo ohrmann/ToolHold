@@ -1,0 +1,464 @@
+[
+  {
+    "extension": "7z",
+    "id": "7z:application/x-7z-compressed",
+    "source": "mime-db 1.54.0 (apache) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/x-7z-compressed"
+  },
+  {
+    "extension": "avif",
+    "id": "avif:image/avif",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "image/avif"
+  },
+  {
+    "extension": "bin",
+    "id": "bin:application/octet-stream",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/octet-stream"
+  },
+  {
+    "extension": "bmp",
+    "id": "bmp:image/bmp",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "image/bmp"
+  },
+  {
+    "extension": "bmp",
+    "id": "bmp:image/x-ms-bmp",
+    "source": "mime-db 1.54.0 (nginx) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "image/x-ms-bmp"
+  },
+  {
+    "extension": "cer",
+    "id": "cer:application/pkix-cert",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/pkix-cert"
+  },
+  {
+    "extension": "cjs",
+    "id": "cjs:application/node",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/node"
+  },
+  {
+    "extension": "crt",
+    "id": "crt:application/x-x509-ca-cert",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/x-x509-ca-cert"
+  },
+  {
+    "extension": "css",
+    "id": "css:text/css",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "text/css"
+  },
+  {
+    "extension": "csv",
+    "id": "csv:text/csv",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "text/csv"
+  },
+  {
+    "extension": "der",
+    "id": "der:application/x-x509-ca-cert",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/x-x509-ca-cert"
+  },
+  {
+    "extension": "doc",
+    "id": "doc:application/msword",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/msword"
+  },
+  {
+    "extension": "docx",
+    "id": "docx:application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+  },
+  {
+    "extension": "gif",
+    "id": "gif:image/gif",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "image/gif"
+  },
+  {
+    "extension": "gz",
+    "id": "gz:application/gzip",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/gzip"
+  },
+  {
+    "extension": "heic",
+    "id": "heic:image/heic",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "image/heic"
+  },
+  {
+    "extension": "heif",
+    "id": "heif:image/heif",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "image/heif"
+  },
+  {
+    "extension": "htm",
+    "id": "htm:text/html",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "text/html"
+  },
+  {
+    "extension": "html",
+    "id": "html:text/html",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "text/html"
+  },
+  {
+    "extension": "ico",
+    "id": "ico:image/vnd.microsoft.icon",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "image/vnd.microsoft.icon"
+  },
+  {
+    "extension": "ico",
+    "id": "ico:image/x-icon",
+    "source": "mime-db 1.54.0 (apache) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "image/x-icon"
+  },
+  {
+    "extension": "jpeg",
+    "id": "jpeg:image/jpeg",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "image/jpeg"
+  },
+  {
+    "extension": "jpg",
+    "id": "jpg:image/jpeg",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "image/jpeg"
+  },
+  {
+    "extension": "js",
+    "id": "js:application/javascript",
+    "source": "mime-db 1.54.0 (apache) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/javascript"
+  },
+  {
+    "extension": "js",
+    "id": "js:text/javascript",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "text/javascript"
+  },
+  {
+    "extension": "json",
+    "id": "json:application/json",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/json"
+  },
+  {
+    "extension": "jsonld",
+    "id": "jsonld:application/ld+json",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/ld+json"
+  },
+  {
+    "extension": "map",
+    "id": "map:application/json",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/json"
+  },
+  {
+    "extension": "markdown",
+    "id": "markdown:text/markdown",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "text/markdown"
+  },
+  {
+    "extension": "md",
+    "id": "md:text/markdown",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "text/markdown"
+  },
+  {
+    "extension": "mjs",
+    "id": "mjs:text/javascript",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "text/javascript"
+  },
+  {
+    "extension": "mov",
+    "id": "mov:video/quicktime",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "video/quicktime"
+  },
+  {
+    "extension": "mp3",
+    "id": "mp3:audio/mp3",
+    "source": "mime-db 1.54.0 (unspecified upstream) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "audio/mp3"
+  },
+  {
+    "extension": "mp3",
+    "id": "mp3:audio/mpeg",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "audio/mpeg"
+  },
+  {
+    "extension": "mp4",
+    "id": "mp4:application/mp4",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/mp4"
+  },
+  {
+    "extension": "mp4",
+    "id": "mp4:video/mp4",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "video/mp4"
+  },
+  {
+    "extension": "ogg",
+    "id": "ogg:audio/ogg",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "audio/ogg"
+  },
+  {
+    "extension": "otf",
+    "id": "otf:font/otf",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "font/otf"
+  },
+  {
+    "extension": "p12",
+    "id": "p12:application/x-pkcs12",
+    "source": "mime-db 1.54.0 (apache) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/x-pkcs12"
+  },
+  {
+    "extension": "pdf",
+    "id": "pdf:application/pdf",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/pdf"
+  },
+  {
+    "extension": "pem",
+    "id": "pem:application/x-x509-ca-cert",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/x-x509-ca-cert"
+  },
+  {
+    "extension": "pfx",
+    "id": "pfx:application/x-pkcs12",
+    "source": "mime-db 1.54.0 (apache) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/x-pkcs12"
+  },
+  {
+    "extension": "png",
+    "id": "png:image/png",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "image/png"
+  },
+  {
+    "extension": "ppt",
+    "id": "ppt:application/vnd.ms-powerpoint",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/vnd.ms-powerpoint"
+  },
+  {
+    "extension": "pptx",
+    "id": "pptx:application/vnd.openxmlformats-officedocument.presentationml.presentation",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+  },
+  {
+    "extension": "rar",
+    "id": "rar:application/vnd.rar",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/vnd.rar"
+  },
+  {
+    "extension": "rar",
+    "id": "rar:application/x-compressed",
+    "source": "mime-db 1.54.0 (unspecified upstream) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/x-compressed"
+  },
+  {
+    "extension": "rar",
+    "id": "rar:application/x-rar-compressed",
+    "source": "mime-db 1.54.0 (apache) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/x-rar-compressed"
+  },
+  {
+    "extension": "svg",
+    "id": "svg:image/svg+xml",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "image/svg+xml"
+  },
+  {
+    "extension": "svgz",
+    "id": "svgz:image/svg+xml",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "image/svg+xml"
+  },
+  {
+    "extension": "tar",
+    "id": "tar:application/x-tar",
+    "source": "mime-db 1.54.0 (apache) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/x-tar"
+  },
+  {
+    "extension": "text",
+    "id": "text:text/plain",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "text/plain"
+  },
+  {
+    "extension": "tif",
+    "id": "tif:image/tiff",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "image/tiff"
+  },
+  {
+    "extension": "tiff",
+    "id": "tiff:image/tiff",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "image/tiff"
+  },
+  {
+    "extension": "toml",
+    "id": "toml:application/toml",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/toml"
+  },
+  {
+    "extension": "ts",
+    "id": "ts:video/mp2t",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "video/mp2t"
+  },
+  {
+    "extension": "tsv",
+    "id": "tsv:text/tab-separated-values",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "text/tab-separated-values"
+  },
+  {
+    "extension": "ttf",
+    "id": "ttf:font/ttf",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "font/ttf"
+  },
+  {
+    "extension": "txt",
+    "id": "txt:text/plain",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "text/plain"
+  },
+  {
+    "extension": "wasm",
+    "id": "wasm:application/wasm",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/wasm"
+  },
+  {
+    "extension": "wav",
+    "id": "wav:audio/wav",
+    "source": "mime-db 1.54.0 (unspecified upstream) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "audio/wav"
+  },
+  {
+    "extension": "wav",
+    "id": "wav:audio/wave",
+    "source": "mime-db 1.54.0 (unspecified upstream) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "audio/wave"
+  },
+  {
+    "extension": "wav",
+    "id": "wav:audio/x-wav",
+    "source": "mime-db 1.54.0 (apache) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "audio/x-wav"
+  },
+  {
+    "extension": "webm",
+    "id": "webm:video/webm",
+    "source": "mime-db 1.54.0 (apache) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "video/webm"
+  },
+  {
+    "extension": "webp",
+    "id": "webp:image/webp",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "image/webp"
+  },
+  {
+    "extension": "woff2",
+    "id": "woff2:font/woff2",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "font/woff2"
+  },
+  {
+    "extension": "woff",
+    "id": "woff:font/woff",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "font/woff"
+  },
+  {
+    "extension": "xls",
+    "id": "xls:application/vnd.ms-excel",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/vnd.ms-excel"
+  },
+  {
+    "extension": "xlsx",
+    "id": "xlsx:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+  },
+  {
+    "extension": "xml",
+    "id": "xml:application/xml",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/xml"
+  },
+  {
+    "extension": "xml",
+    "id": "xml:text/xml",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "text/xml"
+  },
+  {
+    "extension": "yaml",
+    "id": "yaml:application/yaml",
+    "source": "IANA registration template: https://www.iana.org/assignments/media-types/application/yaml",
+    "type": "application/yaml"
+  },
+  {
+    "extension": "yaml",
+    "id": "yaml:text/yaml",
+    "source": "mime-db 1.54.0 (unspecified upstream) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "text/yaml"
+  },
+  {
+    "extension": "yml",
+    "id": "yml:application/yaml",
+    "source": "IANA registration template: https://www.iana.org/assignments/media-types/application/yaml",
+    "type": "application/yaml"
+  },
+  {
+    "extension": "yml",
+    "id": "yml:text/yaml",
+    "source": "mime-db 1.54.0 (unspecified upstream) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "text/yaml"
+  },
+  {
+    "extension": "zip",
+    "id": "zip:application/x-zip-compressed",
+    "source": "mime-db 1.54.0 (unspecified upstream) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/x-zip-compressed"
+  },
+  {
+    "extension": "zip",
+    "id": "zip:application/zip",
+    "source": "mime-db 1.54.0 (iana) · https://github.com/jshttp/mime-db/tree/v1.54.0",
+    "type": "application/zip"
+  }
+]

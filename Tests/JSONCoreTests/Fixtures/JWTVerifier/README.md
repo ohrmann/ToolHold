@@ -1,0 +1,1 @@
+Synthetic public certificate generated with OpenSSL from the existing disposable RS256 JWTEncoder fixture key on 2026-10-22. It is only used to test explicit certificate public-key extraction, never trust or certificate signature validation. No production credentials.

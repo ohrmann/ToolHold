@@ -1,0 +1,45 @@
+{
+  "extensions": {
+    "count": 77,
+    "generatedSHA256": "31a019ffac5aab5d4d2be91d7dbcc5fdac9b47b4850149585afabab91ccfdc3e",
+    "license": "MIT; additional IANA template mappings CC0",
+    "rawSHA256": "96b8a5746867c832ab56743c05e46e73c9facb04879677df0b356f20496cb6cd",
+    "sourceURL": "https://github.com/jshttp/mime-db/tree/v1.54.0"
+  },
+  "registries": [
+    {
+      "count": 75,
+      "generatedSHA256": "c7495c21261e8d7de899e0f6ca8b190331fe3c6464cbd51de14311f3eed97557",
+      "id": "http-status",
+      "rawSHA256": "de9ad5364fd04c3f434d32dea6887888b3cff1be6e43bcaadeb6961c7faa5f9a",
+      "registryLastUpdated": "2025-09-15",
+      "sourceURL": "https://www.iana.org/assignments/http-status-codes/http-status-codes.xml"
+    },
+    {
+      "count": 2364,
+      "generatedSHA256": "77fead72473600184743082af422ec13690413c18499c55c32ba49cd3bbfd7da",
+      "id": "media-types",
+      "rawSHA256": "b3c558e4553e070332f5859d3e8ca6192ea20f9323a5fcc532b7547baf747d83",
+      "registryLastUpdated": "2026-10-20",
+      "sourceURL": "https://www.iana.org/assignments/media-types/media-types.xml"
+    },
+    {
+      "count": 26,
+      "generatedSHA256": "32a41f6849fba6a06d5b4a5cd385705b25f68744f077c244d208a0fdd3633e9f",
+      "id": "ipv4-special",
+      "rawSHA256": "37f334466c842387a8aee8d1ae7a6d5b2208ef27eb8964072538b73ee2f5b21d",
+      "registryLastUpdated": "2025-10-09",
+      "sourceURL": "https://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xml"
+    },
+    {
+      "count": 25,
+      "generatedSHA256": "153477549d120ec1e764bcba01c1ba6871f03941cdb6ac2ea6153aeb6992a95e",
+      "id": "ipv6-special",
+      "rawSHA256": "660acf0201b462b8d820605ba1cb20c4ed216acd883ee4a55a17453d73d4c3aa",
+      "registryLastUpdated": "2025-10-09",
+      "sourceURL": "https://www.iana.org/assignments/iana-ipv6-special-registry/iana-ipv6-special-registry.xml"
+    }
+  ],
+  "retrievalDate": "2026-10-22",
+  "schemaVersion": 1
+}

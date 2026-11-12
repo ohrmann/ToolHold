@@ -1,0 +1,29 @@
+{
+  "versions": {
+    "kotlin": "compiler/plugin 2.2.20; kotlinx.serialization 1.9.0; JVM17",
+    "cSharp": "9.0.304; target net8.0, C#12; runtime roll-forward Major",
+    "java": "openjdk version \"17.0.16\" 2025-07-15 LTS\nOpenJDK Runtime Environment Microsoft-11926164 (build 17.0.16+8-LTS)\nOpenJDK 64-Bit Server VM Microsoft-11926164 (build 17.0.16+8-LTS, mixed mode, sharing); Jackson 2.22.2/annotations 2.22",
+    "typeScript": "Version 5.9.3",
+    "swift": "swift-driver version: 1.168.6 Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0"
+  },
+  "sha256": {
+    "kotlin-compiler-embeddable-2.2.20.jar": "1c6c3f810bfe6a41abcbc34b3a2ef639f1e3f4aeed3a953a4b0974eea4f41889",
+    "kotlin-stdlib-2.2.20.jar": "8836ccffd3585fadda9901244b20d42901d2f3cd581058d8434e2ffabcf3a3e7",
+    "kotlin-reflect-1.8.22.jar": "655825fa6511220fed0cae5aad4dfea2abf98fd10f0ae77eb8daf6abfcd0f027",
+    "kotlinx-coroutines-core-jvm-1.10.2.jar": "5ca175b38df331fd64155b35cd8cae1251fa9ee369709b36d42e0a288ccce3fd",
+    "annotations-23.0.0.jar": "7b0f19724082cbfcbc66e5abea2b9bc92cf08a1ea11e191933ed43801eb3cd05",
+    "kotlinx-serialization-core-jvm-1.9.0.jar": "1f0afa172110e45a7231ef1b44ae8fd84c1ebaff96f3fc3ad68ef8c48120b59c",
+    "kotlinx-serialization-json-jvm-1.9.0.jar": "d94cc34cae39246a1af74fda63f9c4812ce12216ef641d5fa3bbbb539a6922d8",
+    "kotlin-serialization-compiler-plugin-embeddable-2.2.20.jar": "8d8f93620184ac876cba8d3dfda17c25d403f90d2469ca87acd7efa31d84799f",
+    "jackson-databind-2.22.2.jar": "d0da14c12b16b5d54719aa172d83b542ff4abeb8b0fb7db476fde8ceece760ca",
+    "jackson-core-2.22.2.jar": "ff167a6317be15895706c26668f45b898efe40ab8780970658210fe1393d52a6",
+    "jackson-annotations-2.22.jar": "21ddb598807d3a51a876704eb979d9296e1c6a6f47ab1826ff88c6d6a127a2d0",
+    "typescript.tgz": "10e108c9cf7d5f2879053dff18515fb405abf2ccef63eaaf017d9c571687a1d3"
+  },
+  "matrixCases": 91,
+  "notes": [
+    "Test tools only; not linked into the application.",
+    "C# targets net8.0 with SDK 9.0.304; runtime 9.0.8 via Major roll-forward. Runtime .NET 8 not installed.",
+    "Kotlin precise numeric helper opts in to JsonUnquotedLiteral in runtime 1.9.0."
+  ]
+}
